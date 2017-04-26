@@ -74,7 +74,7 @@ class HJtimeout {
 
     }
     cancelInterval(id) {
-
+        this.__removeInterval(id);
     }
     cancelIntervalAll() {
 
@@ -87,6 +87,15 @@ class HJtimeout {
             clearTimeout(list[itemIndex].id);
             list.splice(itemIndex, 1);
             set(this, 'TOLen', get(this, 'TOLen') - 1);
+        }
+    }
+    __removeInterval(id) {
+        let list = get(this, 'IVlist');
+        let itemIndex = list.findIndex((obj) => obj.id == id);
+        if(itemIndex != -1) {
+            clearTimeout(list[itemIndex].id);
+            list.splice(itemIndex, 1);
+            set(this, 'IVLen', get(this, 'IVLen') - 1);
         }
     }
 }
